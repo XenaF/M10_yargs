@@ -3,7 +3,7 @@ const HomePage = require('../utils/page_objects/home_page/home_page');
 const Filter = require('../utils/page_objects/base_page/filter');
 const AllWomenBootsPage = require('../utils/page_objects/home_page/all_women_boots');
 const BagPage = require('../utils/page_objects/home_page/bag_page');
-
+ 
  describe('find womens shoes in the catalog', function(){
 
     it('filter by women shoes', async function() {

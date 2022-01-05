@@ -1,4 +1,4 @@
-const { browser } = require("protractor");
+const logger = require('../../../config/logger.config');
 
 class Collection {
      constructor(selectorType, selector) {
@@ -13,7 +13,7 @@ class Collection {
 
     async getText() {
         const arrayOfCollectionTexts = await this.collection.getText();
-       // logger.info(`Texts of collection's elements are [${arrayOfCollectionTexts}]`);
+       logger.info(`Texts of collection's elements are [${arrayOfCollectionTexts}]`);
         return arrayOfCollectionTexts;
         
     };
@@ -27,7 +27,7 @@ class Collection {
         if (elementToClickIndex === -1) {
             throw new Error(`No element with [${textToClick}] text found!`);
         }
-        // logger.info(`Clicking "${textToClick}" text in "${this.elementName}"`);
+        logger.info(`Clicking "${textToClick}" text"`);
         try {
             await this.collection.get(elementToClickIndex).click();
         }
