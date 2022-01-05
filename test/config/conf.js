@@ -1,31 +1,30 @@
 // An example configuration file.
-var Jasmine2HtmlReporter = require('protractor-jasmine2-html-reporter');
+const Jasmine2HtmlReporter = require('protractor-jasmine2-html-reporter');
+const yargs = require('yargs').argv;
+
 exports.config = {
   directConnect: true,
 
-  // Capabilities to be passed to the webdriver instance.
   capabilities: {
-    'browserName': 'chrome'
+    'browserName': 'chrome',
+    shardTestFiles: yargs.instances > 1,
+    maxInstances: yargs.instances || 1,
   },
 
-  // Framework to use. Jasmine is recommended.
   framework: 'jasmine',
 
-  // Spec patterns are relative to the current working directory when
-  // protractor is called.
-  specs: ['../specs/shoesCatalog.js'],
+  specs: ['../specs/*.js'],
 
-  // Options to be passed to Jasmine.
   jasmineNodeOpts: {
     defaultTimeoutInterval: 100000
   },
 
-  onPrepare: async function() {
-    await browser.waitForAngularEnabled(false);
-    await browser.manage().window().maximize();
-    jasmine.getEnv().addReporter(
+  onPrepare:  function() {
+     browser.waitForAngularEnabled(false);
+     browser.manage().window().maximize();
+     jasmine.getEnv().addReporter(
       new Jasmine2HtmlReporter({
-        savePath: '../test/report',
+        savePath: '../M10_YARGS/test/report',
         cleanDestination: false,
         fileName: 'testReport'
       })
